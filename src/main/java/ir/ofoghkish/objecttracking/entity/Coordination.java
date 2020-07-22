@@ -2,17 +2,14 @@ package ir.ofoghkish.objecttracking.entity;
 
 import com.sun.istack.NotNull;
 import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "TBL_COORDINATION")
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

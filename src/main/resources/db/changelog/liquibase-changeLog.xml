@@ -4,4 +4,53 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <changeSet author="Mazloom (generated)" id="1595450908194-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-2">
+        <createTable tableName="TBL_CAR">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="TBL_CARPK"/>
+            </column>
+            <column name="C_CREATED_BY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="D_CREATED_DATE" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="C_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="D_MODIFIED_DATE" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="N_VERSION" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-3">
+        <createTable tableName="TBL_COORDINATION">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="TBL_COORDINATIONPK"/>
+            </column>
+            <column name="C_CREATED_BY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="D_CREATED_DATE" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="C_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="D_MODIFIED_DATE" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="N_VERSION" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="F_CAR_ID" type="BIGINT"/>
+            <column name="N_CAR_TYPE" type="INTEGER"/>
+            <column name="N_LATITUDE" type="numeric(20, 10)"/>
+            <column name="N_LONGITUDE" type="numeric(20, 10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-4">
+        <addForeignKeyConstraint baseColumnNames="F_CAR_ID" baseTableName="TBL_COORDINATION"
+                                 constraintName="COORDINATION2CAR" deferrable="false" initiallyDeferred="false"
+                                 referencedColumnNames="ID" referencedTableName="TBL_CAR"/>
+    </changeSet>
+
 </databaseChangeLog>

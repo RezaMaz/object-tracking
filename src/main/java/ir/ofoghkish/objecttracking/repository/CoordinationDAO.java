@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CoordinationRepository extends JpaRepository<Coordination, Long> {
+public interface CoordinationDAO extends JpaRepository<Coordination, Long> {
 }

@@ -24,11 +24,11 @@ public class Coordination extends Auditable {
     private Long id;
 
     @NotNull
-    @Column(name = "N_LATITUDE", scale = 20, precision = 10)
+    @Column(name = "N_LATITUDE", scale = 10, precision = 20)
     private BigDecimal latitude;
 
     @NotNull
-    @Column(name = "N_LONGITUDE", scale = 20, precision = 10)
+    @Column(name = "N_LONGITUDE", scale = 10, precision = 20)
     private BigDecimal longitude;
 
     @ManyToOne(fetch = FetchType.LAZY)

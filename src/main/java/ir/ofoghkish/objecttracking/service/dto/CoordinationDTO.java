@@ -18,11 +18,11 @@ public class CoordinationDTO {
     private BigDecimal longitude;
     private Long carId;
     private CarType carType;
-    private CarDTO.Info car;
 
     @Getter
     @Setter
     public static class Info extends CoordinationDTO {
+
         private Long id;
         private Date createdDate;
         private String createdBy;

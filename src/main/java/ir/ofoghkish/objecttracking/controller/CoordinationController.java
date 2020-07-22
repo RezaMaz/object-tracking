@@ -36,7 +36,7 @@ public class CoordinationController {
         return new ResponseEntity<>(iCoordinationService.update(request), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/id")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         iCoordinationService.delete(id);
         return new ResponseEntity(HttpStatus.OK);

@@ -2,7 +2,10 @@ package ir.ofoghkish.objecttracking.entity;
 
 import com.sun.istack.NotNull;
 import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

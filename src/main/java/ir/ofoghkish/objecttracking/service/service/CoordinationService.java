@@ -12,16 +12,18 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class CoordinationService {
+public class CoordinationService implements ICoordinationService {
 
     private final ModelMapper modelMapper;
     private final CoordinationDAO coordinationDAO;
 
+    @Override
     public CoordinationDTO.Info create(CoordinationDTO.Create request) {
         final Coordination coordination = modelMapper.map(request, Coordination.class);
         return save(coordination);
     }
 
+    @Override
     public CoordinationDTO.Info update(CoordinationDTO.Update request) {
         final Optional<Coordination> byId = coordinationDAO.findById(request.getId());
         final Coordination coordination = byId.orElseThrow(() -> new NotFoundException(Coordination.class));
@@ -33,6 +35,7 @@ public class CoordinationService {
         return save(updating);
     }
 
+    @Override
     public void delete(Long id) {
         coordinationDAO.deleteById(id);
     }

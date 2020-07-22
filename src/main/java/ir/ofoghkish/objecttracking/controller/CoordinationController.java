@@ -7,12 +7,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/coordination")
 public class CoordinationController {
 
     private ICoordinationService iCoordinationService;
+
+    @GetMapping(value = "/{id}")
+    ResponseEntity<CoordinationDTO.Info> get(@PathVariable Long id) {
+        return new ResponseEntity<>(iCoordinationService.get(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/list")
+    ResponseEntity<List<CoordinationDTO.Info>> list() {
+        return new ResponseEntity<>(iCoordinationService.list(), HttpStatus.OK);
+    }
 
     @PostMapping
     ResponseEntity<CoordinationDTO.Info> create(@RequestBody CoordinationDTO.Create request) {

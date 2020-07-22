@@ -7,12 +7,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/car")
 public class CarController {
 
     private ICarService iCarService;
+
+    @GetMapping(value = "/{id}")
+    ResponseEntity<CarDTO.Info> get(@PathVariable Long id) {
+        return new ResponseEntity<>(iCarService.get(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/list")
+    ResponseEntity<List<CarDTO.Info>> list() {
+        return new ResponseEntity<>(iCarService.list(), HttpStatus.OK);
+    }
 
     @PostMapping
     ResponseEntity<CarDTO.Info> create(@RequestBody CarDTO.Create request) {
@@ -24,7 +36,7 @@ public class CarController {
         return new ResponseEntity<>(iCarService.update(request), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/id")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         iCarService.delete(id);
         return new ResponseEntity(HttpStatus.OK);

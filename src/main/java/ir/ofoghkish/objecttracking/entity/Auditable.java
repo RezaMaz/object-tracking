@@ -38,6 +38,6 @@ public class Auditable {
 
     @Version
     @Column(name = "N_VERSION", nullable = false)
-    private Long version;
+    private Integer version;
 
 }

@@ -1,10 +1,12 @@
 package ir.ofoghkish.objecttracking.entity.enumeration;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import java.util.Arrays;
 
-public abstract class Converter {
+public abstract class EnumConverter {
 
+    @Converter(autoApply = true)
     public static class CarTypeConverter implements AttributeConverter<CarType, Integer> {
 
         @Override

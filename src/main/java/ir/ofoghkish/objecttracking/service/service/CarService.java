@@ -3,6 +3,7 @@ package ir.ofoghkish.objecttracking.service.service;
 import ir.ofoghkish.objecttracking.entity.Car;
 import ir.ofoghkish.objecttracking.repository.CarDAO;
 import ir.ofoghkish.objecttracking.service.dto.CarDTO;
+import ir.ofoghkish.objecttracking.service.dto.CoordinationDTO;
 import ir.ofoghkish.objecttracking.service.exception.NotFoundException;
 import ir.ofoghkish.objecttracking.service.iservice.ICarService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class CarService implements ICarService {
 
     private final ModelMapper modelMapper;
     private final CarDAO carDAO;
+    private final ICoordinationService iCoordinationService;
 
     @Transactional(readOnly = true)
     @Override
@@ -42,7 +44,12 @@ public class CarService implements ICarService {
     @Override
     public CarDTO.Info create(CarDTO.Create request) {
         final Car car = modelMapper.map(request, Car.class);
-        return save(car);
+        CarDTO.Info saved = save(car);
+        request.getCoordinations().forEach(q -> {
+            q.setCarId(saved.getId());
+            iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
+        });
+        return saved;
     }
 
     @Transactional
@@ -55,7 +62,8 @@ public class CarService implements ICarService {
         modelMapper.map(car, updating);
         modelMapper.map(request, updating);
 
-        return save(updating);
+        CarDTO.Info saved = save(updating);
+        return saved;
     }
 
     @Transactional

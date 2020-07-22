@@ -33,7 +33,7 @@ public class CoordinationService implements ICoordinationService {
     @Override
     public List<CoordinationDTO.Info> list() {
         final List<Coordination> all = coordinationDAO.findAll();
-        return modelMapper.map(all, new TypeToken<CoordinationDTO.Info>() {
+        return modelMapper.map(all, new TypeToken<List<CoordinationDTO.Info>>() {
         }.getType());
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/api/car")
 public class CarController {
 
-    private ICarService iCarService;
+    private final ICarService iCarService;
 
     @GetMapping(value = "/{id}")
     ResponseEntity<CarDTO.Info> get(@PathVariable Long id) {

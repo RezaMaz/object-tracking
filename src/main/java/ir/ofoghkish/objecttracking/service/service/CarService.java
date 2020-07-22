@@ -34,7 +34,7 @@ public class CarService implements ICarService {
     @Override
     public List<CarDTO.Info> list() {
         final List<Car> all = carDAO.findAll();
-        return modelMapper.map(all, new TypeToken<CarDTO.Info>() {
+        return modelMapper.map(all, new TypeToken<List<CarDTO.Info>>() {
         }.getType());
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/api/coordination")
 public class CoordinationController {
 
-    private ICoordinationService iCoordinationService;
+    private final ICoordinationService iCoordinationService;
 
     @GetMapping(value = "/{id}")
     ResponseEntity<CoordinationDTO.Info> get(@PathVariable Long id) {

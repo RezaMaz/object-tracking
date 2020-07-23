@@ -67,17 +67,20 @@ public class CarService implements ICarService {
         final Optional<Car> byId = carDAO.findById(request.getId());
         final Car car = byId.orElseThrow(() -> new NotFoundException(Car.class));
 
+        car.setCoordinations(null);
+
         Car updating = new Car();
         modelMapper.map(car, updating);
         modelMapper.map(request, updating);
 
-        updating.setCoordinations(null);
         CarDTO.Info saved = save(updating);
 
         if (request.getCoordinations() != null && request.getCoordinations().size() > 0) {
             request.getCoordinations().forEach(q -> {
-                if (!isCoordinationOutlier(car.getCoordinations(), q.getLongitude(), q.getLongitude()))
+                if (!isCoordinationOutlier(car.getCoordinations(), q.getLongitude(), q.getLongitude())) {
+                    q.setCarId(saved.getId());
                     iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
+                }
             });
         }
 

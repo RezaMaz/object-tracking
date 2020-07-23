@@ -51,10 +51,13 @@ public class CarService implements ICarService {
         car.setCoordinations(null);
         CarDTO.Info saved = save(car);
 
-        request.getCoordinations().forEach(q -> {
-            q.setCarId(saved.getId());
-            iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
-        });
+        if (request.getCoordinations() != null && request.getCoordinations().size() > 0) {
+            request.getCoordinations().forEach(q -> {
+                q.setCarId(saved.getId());
+                iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
+            });
+        }
+
         return saved;
     }
 
@@ -71,10 +74,13 @@ public class CarService implements ICarService {
         updating.setCoordinations(null);
         CarDTO.Info saved = save(updating);
 
-        request.getCoordinations().forEach(q -> {
-            if (!isCoordinationOutlier(car.getCoordinations(), q.getLongitude(), q.getLongitude()))
-                iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
-        });
+        if (request.getCoordinations() != null && request.getCoordinations().size() > 0) {
+            request.getCoordinations().forEach(q -> {
+                if (!isCoordinationOutlier(car.getCoordinations(), q.getLongitude(), q.getLongitude()))
+                    iCoordinationService.create(modelMapper.map(q, CoordinationDTO.Create.class));
+            });
+        }
+
         return saved;
     }
 

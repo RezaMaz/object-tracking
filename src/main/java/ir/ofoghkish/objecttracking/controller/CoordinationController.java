@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/coordination")
+@RequestMapping(value = "/api/v1/coordination")
 public class CoordinationController {
 
     private final ICoordinationService iCoordinationService;

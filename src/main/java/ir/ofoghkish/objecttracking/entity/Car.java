@@ -25,7 +25,7 @@ public class Car extends Auditable {
     @Column(name = "N_CAR_TYPE")
     private CarType type;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Coordination> coordinations;
 
 }

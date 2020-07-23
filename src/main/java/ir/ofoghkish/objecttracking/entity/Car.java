@@ -23,7 +23,7 @@ public class Car extends Auditable {
     private Long id;
 
     @Column(name = "N_CAR_TYPE")
-    private CarType carType;
+    private CarType type;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Coordination> coordinations;

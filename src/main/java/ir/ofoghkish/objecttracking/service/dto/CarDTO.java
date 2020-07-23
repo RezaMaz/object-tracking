@@ -14,7 +14,7 @@ import java.util.List;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CarDTO {
 
-    private CarType carType;
+    private CarType type;
 
     @Getter
     @Setter

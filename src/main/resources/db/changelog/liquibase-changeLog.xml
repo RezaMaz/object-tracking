@@ -52,5 +52,16 @@
                                  constraintName="COORDINATION2CAR" deferrable="false" initiallyDeferred="false"
                                  referencedColumnNames="ID" referencedTableName="TBL_CAR"/>
     </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-5">
+        <addColumn tableName="TBL_CAR">
+            <column name="N_CAR_TYPE" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-6">
+        <dropColumn columnName="n_car_type" tableName="tbl_coordination"/>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-7">
+        <addNotNullConstraint columnDataType="bigint" columnName="F_CAR_ID" tableName="TBL_COORDINATION"/>
+    </changeSet>
 
 </databaseChangeLog>

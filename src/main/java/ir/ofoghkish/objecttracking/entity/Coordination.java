@@ -1,7 +1,6 @@
 package ir.ofoghkish.objecttracking.entity;
 
 import com.sun.istack.NotNull;
-import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,8 +35,5 @@ public class Coordination extends Auditable {
     @NotNull
     @Column(name = "F_CAR_ID", nullable = false)
     private Long carId;
-
-    @Column(name = "N_CAR_TYPE")
-    private CarType carType;
 
 }

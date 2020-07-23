@@ -2,7 +2,6 @@ package ir.ofoghkish.objecttracking.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.istack.NotNull;
-import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +15,6 @@ public class CoordinationDTO {
 
     private BigDecimal latitude;
     private BigDecimal longitude;
-    private Long carId;
-    private CarType carType;
 
     @Getter
     @Setter
@@ -34,14 +31,7 @@ public class CoordinationDTO {
     @Getter
     @Setter
     public static class Create extends CoordinationDTO {
-
-    }
-
-    @Getter
-    @Setter
-    public static class Update extends CoordinationDTO {
-        @NotNull
-        private Long id;
+        private Long carId;
     }
 
     @Getter

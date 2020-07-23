@@ -2,6 +2,7 @@ package ir.ofoghkish.objecttracking.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.istack.NotNull;
+import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,11 +14,14 @@ import java.util.List;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CarDTO {
 
-    private List<CoordinationDTO.Info> coordinations;
+    private CarType carType;
 
     @Getter
     @Setter
     public static class Info extends CarDTO {
+
+        private List<CoordinationDTO.Info> coordinations;
+
         private Long id;
         private Date createdDate;
         private String createdBy;
@@ -29,7 +33,7 @@ public class CarDTO {
     @Getter
     @Setter
     public static class Create extends CarDTO {
-
+        private List<CoordinationDTO.Create> coordinations;
     }
 
     @Getter
@@ -37,6 +41,8 @@ public class CarDTO {
     public static class Update extends CarDTO {
         @NotNull
         private Long id;
+
+        private List<CoordinationDTO.Create> coordinations;
     }
 
     @Getter

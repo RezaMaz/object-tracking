@@ -44,18 +44,6 @@ public class CoordinationService implements ICoordinationService {
     }
 
     @Override
-    public CoordinationDTO.Info update(CoordinationDTO.Update request) {
-        final Optional<Coordination> byId = coordinationDAO.findById(request.getId());
-        final Coordination coordination = byId.orElseThrow(() -> new NotFoundException(Coordination.class));
-
-        Coordination updating = new Coordination();
-        modelMapper.map(coordination, updating);
-        modelMapper.map(request, updating);
-
-        return save(updating);
-    }
-
-    @Override
     public void delete(Long id) {
         coordinationDAO.deleteById(id);
     }

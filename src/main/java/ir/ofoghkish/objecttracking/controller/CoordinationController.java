@@ -31,11 +31,6 @@ public class CoordinationController {
         return new ResponseEntity<>(iCoordinationService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping()
-    ResponseEntity<CoordinationDTO.Info> update(@RequestBody CoordinationDTO.Update request) {
-        return new ResponseEntity<>(iCoordinationService.update(request), HttpStatus.OK);
-    }
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         iCoordinationService.delete(id);

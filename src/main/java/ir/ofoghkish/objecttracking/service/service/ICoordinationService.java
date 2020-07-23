@@ -11,7 +11,5 @@ public interface ICoordinationService {
 
     CoordinationDTO.Info create(CoordinationDTO.Create request);
 
-    CoordinationDTO.Info update(CoordinationDTO.Update request);
-
     void delete(Long id);
 }

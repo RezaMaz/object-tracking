@@ -63,5 +63,16 @@
     <changeSet author="Mazloom (generated)" id="1595450908194-7">
         <addNotNullConstraint columnDataType="bigint" columnName="F_CAR_ID" tableName="TBL_COORDINATION"/>
     </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-8">
+        <addColumn tableName="TBL_CAR">
+            <column name="C_PLATE_NUMBER" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-9">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="C_PLATE_NUMBER" tableName="TBL_CAR"/>
+    </changeSet>
+    <changeSet author="Mazloom (generated)" id="1595450908194-10">
+        <addNotNullConstraint columnDataType="int" columnName="N_CAR_TYPE" tableName="TBL_CAR"/>
+    </changeSet>
 
 </databaseChangeLog>

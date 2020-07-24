@@ -1,4 +1,4 @@
-package ir.ofoghkish.objecttracking.service.service;
+package ir.ofoghkish.objecttracking.service.iservice;
 
 import ir.ofoghkish.objecttracking.service.dto.CoordinationDTO;
 

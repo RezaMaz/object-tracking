@@ -4,6 +4,7 @@ import ir.ofoghkish.objecttracking.entity.Coordination;
 import ir.ofoghkish.objecttracking.repository.CoordinationDAO;
 import ir.ofoghkish.objecttracking.service.dto.CoordinationDTO;
 import ir.ofoghkish.objecttracking.service.exception.NotFoundException;
+import ir.ofoghkish.objecttracking.service.iservice.ICoordinationService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

@@ -1,7 +1,7 @@
 package ir.ofoghkish.objecttracking.controller;
 
 import ir.ofoghkish.objecttracking.service.dto.CoordinationDTO;
-import ir.ofoghkish.objecttracking.service.service.ICoordinationService;
+import ir.ofoghkish.objecttracking.service.iservice.ICoordinationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @RequiredArgsConstructor
 @Service
@@ -107,17 +106,19 @@ public class CarService implements ICarService {
         return modelMapper.map(saved, CarDTO.Info.class);
     }
 
-    private Boolean isIntersection(Long firstId, Long secondId) {
+    public Boolean isInterference(Long firstId, Long secondId) {
         CarDTO.Info firstCar = get(firstId);
         CarDTO.Info secondCar = get(secondId);
         List<CoordinationDTO.Info> firstCarCoordinations = firstCar.getCoordinations();
         List<CoordinationDTO.Info> secondCarCoordinations = secondCar.getCoordinations();
-        AtomicBoolean intersection = new AtomicBoolean(false);
-        firstCarCoordinations.forEach(q -> secondCarCoordinations.forEach(x -> {
-            if (q.getLatitude().equals(x.getLatitude()) && q.getLongitude().equals(x.getLongitude()))
-                intersection.set(true);
-        }));
-        return intersection.get();
+
+        CoordinationDTO.Info a = firstCarCoordinations.get(0);
+        CoordinationDTO.Info b = firstCarCoordinations.get(1);
+        CoordinationDTO.Info c = secondCarCoordinations.get(0);
+        CoordinationDTO.Info d = secondCarCoordinations.get(1);
+
+        Utility.IsIntersecting(a, b, c, d);
+        return false;
     }
 
 }

@@ -14,4 +14,6 @@ public interface ICarService {
     CarDTO.Info update(CarDTO.Update request);
 
     void delete(Long id);
+
+    Boolean isInterference(Long firstId, Long secondId);
 }

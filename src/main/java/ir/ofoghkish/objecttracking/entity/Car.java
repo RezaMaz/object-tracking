@@ -22,8 +22,11 @@ public class Car extends Auditable {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "N_CAR_TYPE")
+    @Column(name = "N_CAR_TYPE", nullable = false)
     private CarType type;
+
+    @Column(name = "C_PLATE_NUMBER", nullable = false)
+    private String plateNumber;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Coordination> coordinations;

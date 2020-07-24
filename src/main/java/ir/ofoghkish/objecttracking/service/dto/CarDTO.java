@@ -15,6 +15,7 @@ import java.util.List;
 public class CarDTO {
 
     private CarType type;
+    private String plateNumber;
 
     @Getter
     @Setter

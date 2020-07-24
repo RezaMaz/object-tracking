@@ -1,60 +1,53 @@
 package ir.ofoghkish.objecttracking;
 
 
-import org.junit.Assert;
-import org.junit.Before;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ir.ofoghkish.objecttracking.entity.Car;
+import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
+import ir.ofoghkish.objecttracking.repository.CarDAO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.Filter;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = ObjectTrackingApplication.class)
 @AutoConfigureMockMvc
-@DataJpaTest
+@TestPropertySource(
+        locations = "classpath:application-integrationtest.properties")
 public class CarControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private WebApplicationContext context;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    private Filter springSecurityFilterChain;
-
-    @Before
-    public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(context)
-                .addFilters(springSecurityFilterChain).build();
-    }
+    private CarDAO carDAO;
 
     @Test
-    public void testCreate() throws Exception {
+    public void testAddCar() throws Exception {
+        Car car = new Car();
+        car.setId(-1L);
+        car.setType(CarType.Passenger);
+        car.setPlateNumber("1A");
 
-        String exampleUserInfo = "{\"name\":\"Salam12333\",\"username\":\"test@test1.com\",\"password\":\"Salam12345\"}";
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/signup")
-                .accept(MediaType.APPLICATION_JSON).content(exampleUserInfo)
-                .contentType(MediaType.APPLICATION_JSON);
+        mockMvc.perform(post("/api/v1/car")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(car)))
+                .andExpect(status().isCreated());
 
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-        int status = response.getStatus();
-        Assert.assertEquals("http response status is wrong", 200, status);
+        assertThat(carDAO.findAll().get(0).getPlateNumber()).isEqualTo("1A");
     }
+
 }

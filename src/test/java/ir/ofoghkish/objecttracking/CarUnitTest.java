@@ -20,6 +20,7 @@ public class CarUnitTest {
 
     @Test
     public void testIsCoordinationOutlier() {
+
 //        when(iCarService.list()).thenReturn(new int[]{24, 15, 3});
 //        assertEquals(24, businessImpl.findTheGreatestFromAllData());
     }

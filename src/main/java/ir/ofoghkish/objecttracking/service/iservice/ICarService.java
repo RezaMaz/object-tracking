@@ -1,5 +1,6 @@
 package ir.ofoghkish.objecttracking.service.iservice;
 
+import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
 import ir.ofoghkish.objecttracking.service.dto.CarDTO;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface ICarService {
 
     void delete(Long id);
 
-    Boolean isInterference(Long firstId, Long secondId);
+    Boolean isInterference(CarDTO.Info firstCar, CarDTO.Info secondCar);
+
+    List<CarDTO.Info> findCarsByType(CarType type);
 }

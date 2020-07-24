@@ -1,5 +1,6 @@
 package ir.ofoghkish.objecttracking.controller;
 
+import ir.ofoghkish.objecttracking.entity.enumeration.CarType;
 import ir.ofoghkish.objecttracking.service.dto.CarDTO;
 import ir.ofoghkish.objecttracking.service.iservice.ICarService;
 import lombok.RequiredArgsConstructor;
@@ -42,4 +43,15 @@ public class CarController {
         iCarService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping(value = "/interference/{firstId}/{secondId}")
+    ResponseEntity<Boolean> isInterference(@PathVariable Long firstId, @PathVariable Long secondId) {
+        return new ResponseEntity<>(iCarService.isInterference(iCarService.get(firstId), iCarService.get(secondId)), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/search-by-type")
+    ResponseEntity<List<CarDTO.Info>> list(@RequestParam CarType type) {
+        return new ResponseEntity<>(iCarService.findCarsByType(type), HttpStatus.OK);
+    }
+
 }

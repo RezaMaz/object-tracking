@@ -88,7 +88,7 @@ public class CarService implements ICarService {
         return saved;
     }
 
-    private Boolean isCoordinationOutlier(List<Coordination> coordinations, BigDecimal latitude, BigDecimal longitude) {
+    public Boolean isCoordinationOutlier(List<Coordination> coordinations, BigDecimal latitude, BigDecimal longitude) {
         if (coordinations.size() <= 1)
             return false;
 
